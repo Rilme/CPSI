@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Input Example</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .main-content {
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #0070f3;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="title">CPSI SCAN A DOC</h1>
+    </header>
+
+    <main class="main-content">
+        <div class="input-container">
+            <h2>Enter your first name:</h2>
+            <input type="text" id="firstNameInput" placeholder="Type your first name...">
+        </div>
+
+        <div class="input-container">
+            <h2>Enter your last name:</h2>
+            <input type="text" id="lastNameInput" placeholder="Type your last name...">
+        </div>
+
+        <div class="input-container">
+            <h2>Enter your date of birth:</h2>
+            <input type="date" id="dobInput">
+        </div>
+
+        <div class="input-container">
+            <h2>Enter your address:</h2>
+            <input type="text" id="addressInput" placeholder="Type your address...">
+        </div>
+
+        <button onclick="submitData()">Submit</button>
+        <button onclick="goBack()">Back</button>
+    </main>
+
+    <script>
+        window.onload = function() {
+            var storedFirstName = sessionStorage.getItem('firstName');
+            var storedLastName = sessionStorage.getItem('lastName');
+            var storedDob = sessionStorage.getItem('dob');
+            var storedAddress = sessionStorage.getItem('address');
+
+            if (storedFirstName && storedLastName) {
+                document.getElementById("firstNameInput").value = storedFirstName;
+                document.getElementById("lastNameInput").value = storedLastName;
+            }
+
+            if (storedDob) {
+                document.getElementById("dobInput").value = storedDob;
+            }
+
+            if (storedAddress) {
+                document.getElementById("addressInput").value = storedAddress;
+            }
+        };
+
+        function submitData() {
+            var firstName = document.getElementById("firstNameInput").value;
+            var lastName = document.getElementById("lastNameInput").value;
+            var dob = document.getElementById("dobInput").value;
+            var address = document.getElementById("addressInput").value;
+
+            sessionStorage.setItem('firstName', firstName);
+            sessionStorage.setItem('lastName', lastName);
+            sessionStorage.setItem('dob', dob);
+            sessionStorage.setItem('address', address);
+
+            window.location.href = 'Validate.html'; // Update the file name here
+        }
+
+        function goBack() {
+            window.location.href = 'homePage.html'; // Update the file name here
+        }
+    </script>
+</body>
+
+</html>
