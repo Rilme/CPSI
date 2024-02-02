@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Information</title>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f4f4f4; /* Light gray background */
+            color: #333; /* Dark text color */
+        }
+
+        .main-content {
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #displayNames, #displayDob, #displayAddress {
+            color: #777; /* Grey color for answers */
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #0070f3; /* Blue button background */
+            color: #ffffff; /* White text color */
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <main class="main-content">
+        <h2>Submitted Information:</h2>
+        <div id="displayNames"></div>
+        <div id="displayDob"></div>
+        <div id="displayAddress"></div>
+
+        <button onclick="goBack()">Back</button>
+        <button onclick="validate()">Validate</button>
+    </main>
+
+    <script>
+        function getStoredData() {
+            var firstName = sessionStorage.getItem('firstName');
+            var lastName = sessionStorage.getItem('lastName');
+            var dob = sessionStorage.getItem('dob');
+            var address = sessionStorage.getItem('address');
+            return { firstName, lastName, dob, address };
+        }
+
+        function displayStoredData() {
+            var { firstName, lastName, dob, address } = getStoredData();
+            document.getElementById('displayNames').innerText = `First Name: ${firstName}\nLast Name: ${lastName}`;
+            document.getElementById('displayDob').innerText = `Date of Birth: ${dob}`;
+            document.getElementById('displayAddress').innerText = `Address: ${address}`;
+        }
+
+        function goBack() {
+            window.location.href = 'Manual.html';
+        }
+
+        function validate() {
+            // Add validation logic here
+        }
+
+        displayStoredData();
+    </script>
+</body>
+
+</html>
