@@ -39,23 +39,21 @@
     function getFormDigest() {
       // Replace the URL with the actual SharePoint site URL
       var siteUrl = "https://cpsinet.sharepoint.com/sites/EXT-DreamFactory-SouthAlabama-USASpring2024Re-Zero/";
+var endpoint = "_api/web/lists/getbytitle('Test')";
 
-      $.ajax({
-        url: siteUrl + "_api/contextinfo",
-        method: "POST",
-        headers: {
-          "Accept": "application/json;odata=verbose",
-          "Content-Type": "application/json;odata=verbose"
-        },
-        success: function (data) {
-          var formDigestValue = data.d.GetContextWebInformation.FormDigestValue;
-          alert("Form Digest Value: " + formDigestValue);
-        },
-        error: function (error) {
-          console.log("Error getting Form Digest: " + JSON.stringify(error));
-          alert("Error getting Form Digest. Please check the console for details.");
-        }
-      });
+$.ajax({
+  url: siteUrl + endpoint,
+  method: "GET",
+  headers: {
+    "Accept": "application/json;odata=verbose",
+  },
+  success: function (data) {
+    console.log(data);
+  },
+  error: function (error) {
+    console.log("Error: " + JSON.stringify(error));
+  }
+});
     }
   </script>
 </body>
