@@ -43,23 +43,19 @@
 
   <script>
     function getFormDigest() {
-      // Replace the URL with the actual SharePoint site URL
-      var siteUrl = "https://cpsinet.sharepoint.com/sites/EXT-DreamFactory-SouthAlabama-USASpring2024Re-Zero/";
-      var endpoint = "_api/contextinfo";
+      const siteUrl = "https://cpsinet.sharepoint.com/sites/EXT-DreamFactory-SouthAlabama-USASpring2024Re-Zero/";
+      const endpoint = "_api/contextinfo";
 
-      $.ajax({
-        url: siteUrl + endpoint,
+      return fetch(siteUrl + endpoint, {
         method: "POST",
         headers: {
           "Accept": "application/json;odata=verbose",
         },
-        success: function (data) {
-          console.log(data);
-        },
-        error: function (xhr, status, error) {
-          console.error("Error: " + status + " - " + error);
-          console.log(xhr.responseText);
-        }
+      })
+      .then(response => response.json())
+      .then(data => data.d.GetContextWebInformation.FormDigestValue)
+      .catch(error => {
+        console.error('Error getting form digest:', error);
       });
     }
 
@@ -82,8 +78,11 @@
             },
           })
           .then(response => {
-            // Handle the response
-            console.log(response);
+            if (response.ok) {
+              console.log('Image uploaded successfully!');
+            } else {
+              console.error('Error uploading image. Status:', response.status);
+            }
           })
           .catch(error => {
             console.error('Error uploading image:', error);
@@ -92,23 +91,6 @@
       } else {
         console.error('No image selected');
       }
-    }
-
-    function getFormDigest() {
-      const siteUrl = "https://cpsinet.sharepoint.com/sites/EXT-DreamFactory-SouthAlabama-USASpring2024Re-Zero/";
-      const endpoint = "_api/contextinfo";
-
-      return fetch(siteUrl + endpoint, {
-        method: "POST",
-        headers: {
-          "Accept": "application/json;odata=verbose",
-        },
-      })
-      .then(response => response.json())
-      .then(data => data.d.GetContextWebInformation.FormDigestValue)
-      .catch(error => {
-        console.error('Error getting form digest:', error);
-      });
     }
   </script>
 </body>
