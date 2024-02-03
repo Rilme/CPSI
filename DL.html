@@ -1,15 +1,62 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driver License</title>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .header {
+      text-align: center;
+    }
+
+    .title {
+      margin: 10px 0;
+    }
+
+    button, input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
   <header class="header">
-    <link rel="stylesheet" href="style.css" />
     <h1 class="title">Driver License</h1>
   </header>
-  <body>
-    <h1>Manual Option</h1>
-    <button onclick="window.location.href = 'Manual.html';">Manual</button>
-    <h1>Scan Driver's License</h1>
-    <input class="jimmy" type="file" /> <br /><br />
-    <input class="submit" type="submit" value="submit" />
-  </body>
-</html>
+  <h1>Get SharePoint Form Digest</h1>
+  <button onclick="getFormDigest()">Get Form Digest</button>
 
+  <script>
+    function getFormDigest() {
+      // Replace the URL with the actual SharePoint site URL
+      var siteUrl = "https://cpsinet.sharepoint.com/sites/EXT-DreamFactory-SouthAlabama-USASpring2024Re-Zero/";
+
+      $.ajax({
+        url: siteUrl + "_api/contextinfo",
+        method: "POST",
+        headers: {
+          "Accept": "application/json;odata=verbose",
+          "Content-Type": "application/json;odata=verbose"
+        },
+        success: function (data) {
+          var formDigestValue = data.d.GetContextWebInformation.FormDigestValue;
+          alert("Form Digest Value: " + formDigestValue);
+        },
+        error: function (error) {
+          console.log("Error getting Form Digest: " + JSON.stringify(error));
+          alert("Error getting Form Digest. Please check the console for details.");
+        }
+      });
+    }
+  </script>
+</body>
+</html>
