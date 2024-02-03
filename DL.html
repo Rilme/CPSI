@@ -35,26 +35,80 @@
   <h1>Get SharePoint Form Digest</h1>
   <button onclick="getFormDigest()">Get Form Digest</button>
 
+  <h1>Upload Image to SharePoint</h1>
+  <form id="imageUploadForm" enctype="multipart/form-data">
+    <input type="file" id="imageInput" name="image" accept="image/*">
+    <button type="button" onclick="uploadImage()">Upload Image</button>
+  </form>
+
   <script>
     function getFormDigest() {
       // Replace the URL with the actual SharePoint site URL
       var siteUrl = "https://cpsinet.sharepoint.com/sites/EXT-DreamFactory-SouthAlabama-USASpring2024Re-Zero/";
-var endpoint = "_api/web/lists/getbytitle('Test')";
+      var endpoint = "_api/contextinfo";
 
-$.ajax({
-  url: siteUrl + endpoint,
-  method: "GET",
-  headers: {
-    "Accept": "application/json;odata=verbose",
-  },
-  success: function (data) {
-    console.log(data);
-  },
-  error: function (xhr, status, error) {
-    console.error("Error: " + status + " - " + error);
-    console.log(xhr.responseText);
-  }
-});
+      $.ajax({
+        url: siteUrl + endpoint,
+        method: "POST",
+        headers: {
+          "Accept": "application/json;odata=verbose",
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (xhr, status, error) {
+          console.error("Error: " + status + " - " + error);
+          console.log(xhr.responseText);
+        }
+      });
+    }
+
+    function uploadImage() {
+      const fileInput = document.getElementById('imageInput');
+      const imageFile = fileInput.files[0];
+
+      if (imageFile) {
+        getFormDigest().then(digest => {
+          const siteUrl = "https://cpsinet.sharepoint.com/sites/EXT-DreamFactory-SouthAlabama-USASpring2024Re-Zero/";
+          const libraryName = "Test";
+          const fileEndpoint = `/_api/web/lists/getbytitle('${libraryName}')/RootFolder/Files/add(url='${imageFile.name}',overwrite=true)`;
+
+          fetch(siteUrl + fileEndpoint, {
+            method: 'POST',
+            body: imageFile,
+            headers: {
+              'Accept': 'application/json;odata=verbose',
+              'X-RequestDigest': digest,
+            },
+          })
+          .then(response => {
+            // Handle the response
+            console.log(response);
+          })
+          .catch(error => {
+            console.error('Error uploading image:', error);
+          });
+        });
+      } else {
+        console.error('No image selected');
+      }
+    }
+
+    function getFormDigest() {
+      const siteUrl = "https://cpsinet.sharepoint.com/sites/EXT-DreamFactory-SouthAlabama-USASpring2024Re-Zero/";
+      const endpoint = "_api/contextinfo";
+
+      return fetch(siteUrl + endpoint, {
+        method: "POST",
+        headers: {
+          "Accept": "application/json;odata=verbose",
+        },
+      })
+      .then(response => response.json())
+      .then(data => data.d.GetContextWebInformation.FormDigestValue)
+      .catch(error => {
+        console.error('Error getting form digest:', error);
+      });
     }
   </script>
 </body>
