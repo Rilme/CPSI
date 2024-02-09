@@ -18,11 +18,11 @@
   <form id="myForm">
     <input type="text" id="firstName" name="firstName" placeholder="First Name"><br><br>
     <input type="text" id="lastName" name="lastName" placeholder="Last Name"><br><br>
-    <button type="submit">Submit</button>
+    <button type="button" id="submitBtn">Submit</button>
   </form>
 
   <script>
-    document.getElementById('myForm').addEventListener('submit', function(event) {
+    document.getElementById('submitBtn').addEventListener('click', function(event) {
       event.preventDefault(); // Prevent default form submission
       
       // Get values from input fields
