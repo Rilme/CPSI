@@ -1,7 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customized Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -14,30 +64,33 @@
   <h1>Scan Driver's License</h1>
   <input class="jimmy" type="file"> <br><br>
 
-  <h1>Submit Form</h1>
-  <form id="myForm">
-    <input type="text" id="firstName" name="firstName" placeholder="First Name"><br><br>
-    <input type="text" id="lastName" name="lastName" placeholder="Last Name"><br><br>
-    <button type="button" id="submitBtn">Submit</button>
-  </form>
+  <div class="container">
+    <h1>Customized Form</h1>
+    <form id="myForm">
+      <input type="text" name="firstName" placeholder="First Name">
+      <input type="text" name="lastName" placeholder="Last Name">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
 
   <script>
-    document.getElementById('submitBtn').addEventListener('click', function(event) {
+    document.getElementById('myForm').addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent default form submission
       
-      // Get values from input fields
-      const firstName = document.getElementById('firstName').value;
-      const lastName = document.getElementById('lastName').value;
-
       // Construct form data
-      const formData = new FormData();
-      formData.append('firstName', firstName);
-      formData.append('lastName', lastName);
-      
+      const formData = new FormData(this);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+
       // Send form data to Power Automate
       fetch('https://prod-191.westus.logic.azure.com:443/workflows/c2537bf7bc454b2ea998dd4f214b6300/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=hDud5itQ7lVz9MKy8KvOhENDrZkLwIxjkwIriEWSKpk', {
         method: 'POST',
-        body: formData
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
       .then(response => {
         if (response.ok) {
