@@ -1,26 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="header">
     <h1 class="title">Driver License</h1>
   </header>
+  
   <h1>Manual Option</h1>
   <button id="manualButton">Manual</button>
+  
   <h1>Scan Driver's License</h1>
-  <input class="jimmy" type="file" /> <br /><br />
-  <input class="submit" type="submit" value="submit" id="submitButton" />
+  <input class="jimmy" type="file"> <br><br>
+
+  <h1>Submit Form</h1>
+  <form id="myForm">
+    <input type="text" name="firstName" placeholder="First Name"><br><br>
+    <input type="text" name="lastName" placeholder="Last Name"><br><br>
+    <button type="submit">Submit</button>
+  </form>
 
   <script>
-    document.getElementById('submitButton').addEventListener('click', function(event) {
+    document.getElementById('myForm').addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent default form submission
       
       // Construct form data
-      const formData = new FormData();
-      formData.append('firstName', 'John');
-      formData.append('lastName', 'Doe');
+      const formData = new FormData(this);
       
       // Send form data to Power Automate
       fetch('https://prod-191.westus.logic.azure.com:443/workflows/c2537bf7bc454b2ea998dd4f214b6300/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=hDud5itQ7lVz9MKy8KvOhENDrZkLwIxjkwIriEWSKpk', {
