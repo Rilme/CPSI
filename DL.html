@@ -1,14 +1,47 @@
 <!doctype html>
 <html>
+<head>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
   <header class="header">
-    <link rel="stylesheet" href="style.css" />
     <h1 class="title">Driver License</h1>
   </header>
-  <body>
-    <h1>Manual Option</h1>
-    <button onclick="window.location.href = 'Manual.html';">Manual</button>
-    <h1>Scan Driver's License</h1>
-    <input class="jimmy" type="file" /> <br /><br />
-    <input class="submit" type="submit" value="submit" />
-  </body>
+  <h1>Manual Option</h1>
+  <button id="manualButton">Manual</button>
+  <h1>Scan Driver's License</h1>
+  <input class="jimmy" type="file" /> <br /><br />
+  <input class="submit" type="submit" value="submit" id="submitButton" />
+
+  <script>
+    document.getElementById('submitButton').addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent default form submission
+      
+      // Construct form data
+      const formData = new FormData();
+      formData.append('firstName', 'John');
+      formData.append('lastName', 'Doe');
+      
+      // Send form data to Power Automate
+      fetch('https://prod-191.westus.logic.azure.com:443/workflows/c2537bf7bc454b2ea998dd4f214b6300/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=hDud5itQ7lVz9MKy8KvOhENDrZkLwIxjkwIriEWSKpk', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('Form data sent successfully!');
+        } else {
+          console.error('Failed to send form data.');
+        }
+      })
+      .catch(error => {
+        console.error('Error sending form data:', error);
+      });
+    });
+
+    document.getElementById('manualButton').addEventListener('click', function() {
+      window.location.href = 'Manual.html';
+    });
+  </script>
+</body>
 </html>
