@@ -16,8 +16,8 @@
 
   <h1>Submit Form</h1>
   <form id="myForm">
-    <input type="text" name="firstName" placeholder="First Name"><br><br>
-    <input type="text" name="lastName" placeholder="Last Name"><br><br>
+    <input type="text" id="firstName" name="firstName" placeholder="First Name"><br><br>
+    <input type="text" id="lastName" name="lastName" placeholder="Last Name"><br><br>
     <button type="submit">Submit</button>
   </form>
 
@@ -25,8 +25,14 @@
     document.getElementById('myForm').addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent default form submission
       
+      // Get values from input fields
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+
       // Construct form data
-      const formData = new FormData(this);
+      const formData = new FormData();
+      formData.append('firstName', firstName);
+      formData.append('lastName', lastName);
       
       // Send form data to Power Automate
       fetch('https://prod-191.westus.logic.azure.com:443/workflows/c2537bf7bc454b2ea998dd4f214b6300/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=hDud5itQ7lVz9MKy8KvOhENDrZkLwIxjkwIriEWSKpk', {
