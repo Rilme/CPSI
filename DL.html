@@ -1,97 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Driver License</title>
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 10px;
-      margin: 0;
-      box-sizing: border-box;
-    }
-
-    .header {
-      text-align: center;
-    }
-
-    .title {
-      margin: 10px 0;
-    }
-
-    button, input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-    }
-  </style>
+  <meta charset="utf-8">
+  <title>Driver's License</title>
 </head>
 <body>
-  <header class="header">
-    <h1 class="title">Driver License</h1>
-  </header>
-  <h1>Get SharePoint Form Digest</h1>
-  <button onclick="getFormDigest()">Get Form Digest</button>
-
-  <h1>Upload Image to SharePoint</h1>
-  <form id="imageUploadForm" enctype="multipart/form-data">
-    <input type="file" id="imageInput" name="image" accept="image/*">
-    <button type="button" onclick="uploadImage()">Upload Image</button>
+  <h1>Manual Option</h1>
+  <button onclick="window.location.href = 'Manual.html';">Manual</button>
+  <h2>Scan Driver's License</h2>
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" id="myFile" />
+    <br /><br />
+    <input type="button" value="Submit" onclick="uploadFile()" />
   </form>
 
   <script>
-    function getFormDigest() {
-      const siteUrl = "https://cpsinet.sharepoint.com/sites/EXT-DreamFactory-SouthAlabama-USASpring2024Re-Zero/";
-      const endpoint = "_api/contextinfo";
+    function uploadFile() {
+      var fileInput = document.getElementById('myFile');
+      var file = fileInput.files[0];
 
-      return fetch(siteUrl + endpoint, {
-        method: "POST",
-        headers: {
-          "Accept": "application/json;odata=verbose",
-        },
-      })
-      .then(response => response.json())
-      .then(data => data.d.GetContextWebInformation.FormDigestValue)
-      .catch(error => {
-        console.error('Error getting form digest:', error);
-      });
-    }
+      if (file) {
+        var formData = new FormData();
+        formData.append('file', file);
 
-    function uploadImage() {
-      const fileInput = document.getElementById('imageInput');
-      const imageFile = fileInput.files[0];
-
-      if (imageFile) {
-        getFormDigest().then(digest => {
-          const siteUrl = "https://cpsinet.sharepoint.com/sites/EXT-DreamFactory-SouthAlabama-USASpring2024Re-Zero/";
-          const libraryName = "Test";
-          const fileEndpoint = `/_api/web/lists/getbytitle('${libraryName}')/RootFolder/Files/add(url='${imageFile.name}',overwrite=true)`;
-
-          fetch(siteUrl + fileEndpoint, {
-            method: 'POST',
-            body: imageFile,
-            headers: {
-              'Accept': 'application/json;odata=verbose',
-              'X-RequestDigest': digest,
-            },
-          })
-          .then(response => {
-            if (response.ok) {
-              console.log('Image uploaded successfully!');
-            } else {
-              console.error('Error uploading image. Status:', response.status);
-            }
-          })
-          .catch(error => {
-            console.error('Error uploading image:', error);
-          });
+        fetch('https://your-power-automate-endpoint', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('File uploaded successfully:', data);
+          // Handle success, if needed
+        })
+        .catch(error => {
+          console.error('Error uploading file:', error);
+          // Handle error, if needed
         });
       } else {
-        console.error('No image selected');
+        console.error('No file selected.');
+        // Handle no file selected, if needed
       }
     }
   </script>
 </body>
+<!doctype html>
+<html>
+  <header class="header">
+    <link rel="stylesheet" href="style.css" />
+    <h1 class="title">Driver License</h1>
+  </header>
+  <body>
+    <h1>Manual Option</h1>
+    <button onclick="window.location.href = 'Manual.html';">Manual</button>
+    <h1>Scan Driver's License</h1>
+    <input class="jimmy" type="file" /> <br /><br />
+    <input class="submit" type="submit" value="submit" />
+  </body>
 </html>
