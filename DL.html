@@ -98,6 +98,7 @@
       .then(response => {
         if (response.ok) {
           console.log('Form data sent successfully!');
+          window.location.href = "https://example.com/nextpage"; // Redirect to next page
         } else {
           console.error('Failed to send form data.');
         }
