@@ -87,6 +87,11 @@
     document.getElementById('myForm').addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent default form submission
 
+      const confirmation = confirm("Are you sure you want to submit the form?");
+      if (!confirmation) {
+        return; // Do not submit the form if user cancels
+      }
+
       // Construct form data
       const formData = new FormData(this);
       
@@ -98,7 +103,7 @@
       .then(response => {
         if (response.ok) {
           console.log('Form data sent successfully!');
-          window.location.href = "Manual.html"; // Redirect to next page
+          window.location.href = "https://example.com/nextpage"; // Redirect to next page
         } else {
           console.error('Failed to send form data.');
         }
