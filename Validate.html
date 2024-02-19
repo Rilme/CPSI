@@ -21,7 +21,7 @@
             align-items: center;
         }
 
-        #displayNames, #displayDob, #displayAddress {
+        #displayInfo {
             color: #777; /* Grey color for answers */
             margin-bottom: 15px;
         }
@@ -47,11 +47,9 @@
 <body>
     <main class="main-content">
         <h2>Submitted Information:</h2>
-        <div id="displayNames"></div>
-        <div id="displayDob"></div>
-        <div id="displayAddress"></div>
+        <div id="displayInfo"></div>
 
-        <button onclick="Edit()">Edit</button>
+        <button onclick="goBack()">Back</button>
         <button onclick="validate()">Validate</button>
     </main>
 
@@ -66,12 +64,11 @@
 
         function displayStoredData() {
             var { firstName, lastName, dob, address } = getStoredData();
-            document.getElementById('displayNames').innerText = `First Name: ${firstName}\nLast Name: ${lastName}`;
-            document.getElementById('displayDob').innerText = `Date of Birth: ${dob}`;
-            document.getElementById('displayAddress').innerText = `Address: ${address}`;
+            var displayText = `First Name: ${firstName}<br>Last Name: ${lastName}<br>Date of Birth: ${dob}<br>Address: ${address}`;
+            document.getElementById('displayInfo').innerHTML = displayText;
         }
 
-        function Edit() {
+        function goBack() {
             window.location.href = 'Manual.html';
         }
 
