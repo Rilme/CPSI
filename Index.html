@@ -3,16 +3,87 @@
 <head>
   <meta charset="utf-8">
   <title>Driver's License</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .button-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #0070e0;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .button:hover {
+      background-color: #0050a0;
+    }
+    #myFile {
+      display: none;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      text-align: center;
+      padding: 10px 0;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    label:hover {
+      background-color: #e0e0e0;
+    }
+    input[type="button"] {
+      display: block;
+      margin: 0 auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #0070e0;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    input[type="button"]:hover {
+      background-color: #0050a0;
+    }
+  </style>
 </head>
 <body>
-  <h1>Manual Option</h1>
-  <button onclick="window.location.href = 'Manual.html';">Manual</button>
-  <h2>Scan Driver's License</h2>
-  <form id="uploadForm" enctype="multipart/form-data">
-    <input type="file" id="myFile" />
-    <br /><br />
-    <input type="button" value="Submit" onclick="uploadFile()" />
-  </form>
+  <div class="container">
+    <h1>Driver's License Upload</h1>
+    <div class="button-container">
+      <button class="button" onclick="window.location.href = 'Manual.html';">Manual Upload</button>
+    </div>
+    <h2>Scan Driver's License</h2>
+    <form id="uploadForm" enctype="multipart/form-data">
+      <label for="myFile">Choose File</label>
+      <input type="file" id="myFile" />
+      <input type="button" value="Upload" onclick="uploadFile()" />
+    </form>
+  </div>
 
   <script>
     function uploadFile() {
