@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drag and Drop File Upload</title>
     <link rel="stylesheet" href="style.css">
 </head>
-  
+
 <body>
   <header class="header">
       <h1 class="title">CPSI SCAN A DOC</h1>
@@ -15,8 +15,6 @@
     <div class="container">
         <div class="header-section">
             <h1>Upload Files</h1>
-           <!-- <p>Upload files you want to share with your team members.</p>
-            <p>PDF, Images & Videos are allowed.</p> -->
         </div> 
         <div class="drop-section" id="dropArea">
             <div class="col">
@@ -31,7 +29,7 @@
           <h2>Scan Driver's License</h2>
           <label for="myFile">Drag & Drop or Click to Choose File</label>
           <input type="file" id="myFile" />
-          <input type="button" value="Upload" onclick="uploadFile()" />
+          <input type="button" value="Upload" onclick="confirmUpload()" /> <!-- Modified to call confirmUpload function -->
           </div>
         </div>
         <div class="list-section">
@@ -39,8 +37,16 @@
         </div>
   </div>
     </div>
-<!--  <script>
-  function uploadFile() {
+  <script>
+    
+    function confirmUpload() {
+        if (confirm("Are you sure you want to submit the information for extraction?")) {
+            uploadFile();
+        } else {
+            // User clicked Cancel, do nothing
+        }
+    }
+  /* function uploadFile() {
       var fileInput = document.getElementById('myFile');
       var file = fileInput.files[0];
 
@@ -112,7 +118,9 @@
     function iconSelector(type) {
       var splitType = (type.split('/')[0] == 'application') ? type.split('/')[1] : type.split('/')[0];
       return splitType + '.png';
-    }
-  </script> -->
+    } */
+
+    
+  </script>
 </body>
 </html>
