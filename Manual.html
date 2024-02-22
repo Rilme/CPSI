@@ -29,6 +29,13 @@
             font-size: 16px;
         }
 
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 300px; /* Adjust width as needed */
+        }
+
         button {
             background-color: #0070f3;
             color: #ffffff;
@@ -38,6 +45,8 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            flex: 1; /* Distribute space evenly */
+            margin: 0 5px; /* Adjust margin as needed */
         }
 
         button:hover {
@@ -72,12 +81,14 @@
             <input type="text" id="addressInput" placeholder="Type your address...">
         </div>
 
-        <button onclick="submitData()">Submit</button>
-        <button onclick="goBack()">Back</button>
+        <div class="button-container">
+            <button onclick="submitData()">Submit</button>
+            <button onclick="goBack()">Back</button>
+        </div>
     </main>
 
     <script>
-        window.onload = function() {
+        window.onload = function () {
             var storedFirstName = sessionStorage.getItem('firstName');
             var storedLastName = sessionStorage.getItem('lastName');
             var storedDob = sessionStorage.getItem('dob');
@@ -108,11 +119,11 @@
             sessionStorage.setItem('dob', dob);
             sessionStorage.setItem('address', address);
 
-            window.location.href = 'loadSExtract.html'; // Update the file name here
+            window.location.href = 'Validate.html'; // Update the file name here
         }
 
         function goBack() {
-            window.location.href = 'index.html'; // Update the file name here
+            window.location.href = 'Test.html'; // Update the file name here
         }
     </script>
 </body>
