@@ -1,7 +1,9 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    /* padding: 0; */
-    margin-top: 50px;
+    /*margin-top: 50px;*/
+      margin: 100px;
+      padding: 100px;
     background: linear-gradient(to bottom right, #FF00FF, #0050a0,#87CEEB,#0050a0,#FF00FF);
     text-align: center;
     color: #333; /* Dark text color */
