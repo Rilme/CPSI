@@ -15,9 +15,9 @@ a {
 }
 
 .header {
-  background-size: 700px;
+  background-size: 400px;
   background-image: url("CPSI_bg.jpg");
-  padding: 1rem;
+  padding: -2rem;
   -webkit-text-stroke: 1px black;
   text-align: center;
   font-family: "Helvetica";
