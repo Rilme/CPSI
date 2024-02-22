@@ -21,6 +21,7 @@
                 </div>
                 <span>Drag & Drop your files here</span>
                 <span>OR</span>
+                <button class="file-selector">Browse Files</button>
                 <input type="file" class="file-selector-input" multiple onchange="uploadFile(this.files)">
             </div>
             <div class="col">
@@ -38,9 +39,9 @@
             <div class="list"></div>
         </div>
         <!-- Manual Upload Button -->
-        <div class="button-container">
-            <button class="button" onclick="manualUpload()">Manual Upload</button>
-        </div>
+  <div class="button-container">
+    <button class="button" onclick="window.location.href = 'Manual.html';">Manual Upload</button>
+  </div>
     </div>
   <script>
   function uploadFile() {
