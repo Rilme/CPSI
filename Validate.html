@@ -21,7 +21,26 @@
             align-items: center;
         }
 
-        #displayInfo {
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #0070f3; /* Blue background for table headers */
+            color: #ffffff; /* White text color for table headers */
+        }
+
+        #displayNames, #displayDob, #displayAddress {
             color: #777; /* Grey color for answers */
             margin-bottom: 15px;
         }
@@ -47,7 +66,28 @@
 <body>
     <main class="main-content">
         <h2>Submitted Information:</h2>
-        <div id="displayInfo"></div>
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Answer</th>
+            </tr>
+            <tr>
+                <td>First Name:</td>
+                <td id="displayFirstName"></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td id="displayLastName"></td>
+            </tr>
+            <tr>
+                <td>Date of Birth:</td>
+                <td id="displayDob"></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td id="displayAddress"></td>
+            </tr>
+        </table>
 
         <button onclick="goBack()">Back</button>
         <button onclick="validate()">Validate</button>
@@ -64,8 +104,10 @@
 
         function displayStoredData() {
             var { firstName, lastName, dob, address } = getStoredData();
-            var displayText = `First Name: ${firstName}<br>Last Name: ${lastName}<br>Date of Birth: ${dob}<br>Address: ${address}`;
-            document.getElementById('displayInfo').innerHTML = displayText;
+            document.getElementById('displayFirstName').innerText = firstName;
+            document.getElementById('displayLastName').innerText = lastName;
+            document.getElementById('displayDob').innerText = dob;
+            document.getElementById('displayAddress').innerText = address;
         }
 
         function goBack() {
