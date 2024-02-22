@@ -1,63 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Driver's License</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-     /* body {
-          text-align: center;
-          margin-top: 50px;
-          padding: 0;
-      }
-
-      .main-content {
-          min-height: 100vh;
-          padding: 2rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-      }
-
-      .input-container {
-          margin-bottom: 20px;
-      }
-
-      input {
-          padding: 10px;
-          font-size: 16px;
-      }
-
-      button {
-          background-color: #0070f3;
-          color: #ffffff;
-          padding: 1rem 2rem;
-          font-size: 1rem;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-      }
-
-      button:hover {
-          background-color: #0056b3;
-      }
-  </style> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop File Upload</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container" id="dropArea">
-    <h1>Driver's License Upload</h1>
-    <div class="button-container">
-      <button class="button" onclick="window.location.href = 'Manual.html';">Manual Upload</button>
-    </div>
-    <h2>Scan Driver's License</h2>
-    <label for="myFile">Drag & Drop or Click to Choose File</label>
-    <input type="file" id="myFile" />
-    <input type="button" value="Upload" onclick="uploadFile()" />
+    <div class="container">
+        <div class="header-section">
+            <h1>Upload Files</h1>
+            <p>Upload files you want to share with your team members.</p>
+            <p>PDF, Images & Videos are allowed.</p>
+        </div>
+        <div class="drop-section" id="dropArea">
+            <div class="col">
+                <div class="cloud-icon">
+                    <img src="cloud.png" alt="cloud">
+                </div>
+            </div>
+            <h2>Scan Driver's License</h2>
+            <!-- <label for="myFile">Drag & Drop or Click to Choose File</label> -->
+            <input type="file" class="file-selector-input" multiple onchange="uploadFile(this.files)">
+           <input type="button" value="Upload" onclick="uploadFile()" /> 
+          </div>
+        </div>
+        <div class="list-section">
+            <div class="list"></div>
+        </div>
+        <!-- Manual Upload Button -->
+  <div class="button-container">
+    <button class="button" onclick="window.location.href = 'Manual.html';">Manual Upload</button>
   </div>
-
+    </div>
   <script>
-    function uploadFile() {
+  function uploadFile() {
       var fileInput = document.getElementById('myFile');
       var file = fileInput.files[0];
 
