@@ -2,6 +2,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
+  background: linear-gradient(to bottom right, #FF00FF, #0050a0,#87CEEB,#0050a0,#FF00FF);
 }
 
 a {
@@ -84,6 +85,83 @@ a {
   background-color: #0a2ac7;
 }
 
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.button-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #0070e0;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0050a0;
+}
+
+#myFile {
+  display: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 10px 0;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+label:hover {
+  background-color: #e0e0e0;
+}
+
+input[type="button"] {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #0070e0;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="button"]:hover {
+  background-color: #0050a0;
+}
+
+.drag-over-effect {
+  border: 2px dashed #0070e0;
+}
+
+.file-icon {
+  width: 50px;
+  height: 50px;
+}
 
 .grid {
   display: flex;
