@@ -1,7 +1,7 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 50px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   background: linear-gradient( #FF00FF, #0050a0, #87CEEB, #0050a0, #FF00FF);
 }
 
@@ -15,9 +15,9 @@ a {
 }
 
 .header {
-  background-size: 400px;
+  background-size: cover; /* Set background size to cover */
   background-image: url("CPSI_bg.jpg");
-  padding: -2rem;
+  padding: 2rem;
   -webkit-text-stroke: 1px black;
   text-align: center;
   font-family: "Helvetica";
