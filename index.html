@@ -1,191 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <title>Driver's License</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop File Upload</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* CSS styles */
-        html {
-            background: linear-gradient(to bottom right, #FF00FF, #0050a0, #87CEEB, #0050a0, #FF00FF);
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        h1,
-        h2 {
-            text-align: center;
-        }
-
-        .button-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #0070e0;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #0050a0;
-        }
-
-        #myFile {
-            display: none;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-            text-align: center;
-            padding: 10px 0;
-            background-color: #f0f0f0;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        label:hover {
-            background-color: #e0e0e0;
-        }
-
-        input[type="button"] {
-            display: block;
-            margin: 0 auto;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #0070e0;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        input[type="button"]:hover {
-            background-color: #0050a0;
-        }
-
-        .drag-over-effect {
-            border: 2px dashed #0070e0;
-        }
-
-        .file-icon {
-            width: 50px;
-            height: 50px;
-        }
-    </style>
 </head>
-
 <body>
-    <div class="container" id="dropArea">
-        <h1>Driver's License Upload</h1>
-        <div class="button-container">
-            <button class="button" onclick="window.location.href = 'Manual.html';">Manual Upload</button>
+    <div class="container">
+        <div class="header-section">
+            <h1>Upload Files</h1>
+            <p>Upload files you want to share with your team members.</p>
+            <p>PDF, Images & Videos are allowed.</p>
         </div>
-        <h2>Scan Driver's License</h2>
-        <label for="myFile">Drag & Drop or Click to Choose File</label>
-        <input type="file" id="myFile" />
-        <input type="button" value="Upload" onclick="uploadFile()" />
+        <div class="drop-section" id="dropArea">
+            <div class="col">
+                <div class="cloud-icon">
+                    <img src="icons/cloud.png" alt="cloud">
+                </div>
+                <span>Drag & Drop your files here</span>
+                <span>OR</span>
+                <button class="file-selector">Browse Files</button>
+                <input type="file" class="file-selector-input" multiple onchange="uploadFile(this.files)">
+            </div>
+            <div class="col">
+                <div class="drop-here">Drop Here</div>
+            </div>
+          </div>
+            <h2>Scan Driver's License</h2>
+            <label for="myFile">Drag & Drop or Click to Choose File</label>
+            <input type="file" id="myFile" />
+            <input type="button" value="Upload" onclick="uploadFile()" />
+          </div>
+        </div>
+        <div class="list-section">
+            <div class="list-title">Uploaded Files</div>
+            <div class="list"></div>
+        </div>
+        <!-- Manual Upload Button -->
+        <div class="button-container">
+            <button class="button" onclick="manualUpload()">Manual Upload</button>
+        </div>
     </div>
+  <script>
+  function uploadFile() {
+      var fileInput = document.getElementById('myFile');
+      var file = fileInput.files[0];
 
-    <script>
-        // JavaScript code
-        function uploadFile() {
-            var fileInput = document.getElementById('myFile');
-            var file = fileInput.files[0];
+      if (file) {
+        var formData = new FormData();
+        formData.append('file', file);
 
-            if (file) {
-                var formData = new FormData();
-                formData.append('file', file);
+        fetch('https://your-power-automate-endpoint', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('File uploaded successfully:', data);
+          // Handle success, if needed
+        })
+        .catch(error => {
+          console.error('Error uploading file:', error);
+          // Handle error, if needed
+        });
+      } else {
+        console.error('No file selected.');
+        // Handle no file selected, if needed
+      }
+    }
 
-                fetch('https://your-power-automate-endpoint', {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('File uploaded successfully:', data);
-                        // Handle success, if needed
-                    })
-                    .catch(error => {
-                        console.error('Error uploading file:', error);
-                        // Handle error, if needed
-                    });
-            } else {
-                console.error('No file selected.');
-                // Handle no file selected, if needed
-            }
-        }
+    var dropArea = document.getElementById('dropArea');
 
-        var dropArea = document.getElementById('dropArea');
+    // Drag over
+    dropArea.ondragover = (e) => {
+      e.preventDefault();
+      dropArea.classList.add('drag-over-effect');
+    }
 
-        // Drag over
-        dropArea.ondragover = (e) => {
-            e.preventDefault();
-            dropArea.classList.add('drag-over-effect');
-        }
+    // Drag leave
+    dropArea.ondragleave = () => {
+      dropArea.classList.remove('drag-over-effect');
+    }
 
-        // Drag leave
-        dropArea.ondragleave = () => {
-            dropArea.classList.remove('drag-over-effect');
-        }
+    // Drop
+    dropArea.ondrop = (e) => {
+      e.preventDefault();
+      dropArea.classList.remove('drag-over-effect');
+      if(e.dataTransfer.items){
+          [...e.dataTransfer.items].forEach((item) => {
+              if(item.kind === 'file'){
+                  const file = item.getAsFile();
+                  if(typeValidation(file.type)){
+                      uploadFile(file)
+                  }
+              }
+          })
+      }else{
+          [...e.dataTransfer.files].forEach((file) => {
+              if(typeValidation(file.type)){
+                  uploadFile(file)
+              }
+          })
+      }
+    }
 
-        // Drop
-        dropArea.ondrop = (e) => {
-            e.preventDefault();
-            dropArea.classList.remove('drag-over-effect');
-            if (e.dataTransfer.items) {
-                [...e.dataTransfer.items].forEach((item) => {
-                    if (item.kind === 'file') {
-                        const file = item.getAsFile();
-                        if (typeValidation(file.type)) {
-                            uploadFile(file)
-                        }
-                    }
-                })
-            } else {
-                [...e.dataTransfer.files].forEach((file) => {
-                    if (typeValidation(file.type)) {
-                        uploadFile(file)
-                    }
-                })
-            }
-        }
+    // Function to validate file type
+    function typeValidation(fileType) {
+      // Implement your file type validation logic here
+      return true; // Example: Always return true for demonstration purposes
+    }
 
-        // Function to validate file type
-        function typeValidation(fileType) {
-            // Implement your file type validation logic here
-            return true; // Example: Always return true for demonstration purposes
-        }
-
-        // Function to find icon for file
-        function iconSelector(type) {
-            var splitType = (type.split('/')[0] == 'application') ? type.split('/')[1] : type.split('/')[0];
-            return splitType + '.png';
-        }
-    </script>
+    // Function to find icon for file
+    function iconSelector(type) {
+      var splitType = (type.split('/')[0] == 'application') ? type.split('/')[1] : type.split('/')[0];
+      return splitType + '.png';
+    }
+  </script>
 </body>
-
 </html>
