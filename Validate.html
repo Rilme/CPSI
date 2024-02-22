@@ -42,7 +42,7 @@
             color: #ffffff; /* White text color for table headers */
         }
 
-        #displayNames, #displayDob, #displayAddress {
+        .patient-info {
             color: #777; /* Grey color for answers */
             margin-bottom: 15px;
         }
@@ -75,39 +75,39 @@
             </tr>
             <tr>
                 <td>First Name:</td>
-                <td id="displayFirstName"></td>
+                <td id="displayFirstName" class="patient-info"></td>
             </tr>
             <tr>
                 <td>Last Name:</td>
-                <td id="displayLastName"></td>
+                <td id="displayLastName" class="patient-info"></td>
             </tr>
             <tr>
                 <td>Date of Birth:</td>
-                <td id="displayDob"></td>
+                <td id="displayDob" class="patient-info"></td>
             </tr>
             <tr>
                 <td>Address:</td>
-                <td id="displayAddress"></td>
+                <td id="displayAddress" class="patient-info"></td>
             </tr>
             <tr>
-                <td>Driver License Exp:</td>
-                <td id="displayLastName"></td>
-            </tr>
-            <tr>
-                <td>Driver License No.:</td>
-                <td id="displayLastName"></td>
+                <td>Driver's License Number:</td>
+                <td id="displayLicenseNumber" class="patient-info"></td>
             </tr>
             <tr>
                 <td>Height:</td>
-                <td id="displayLastName"></td>
+                <td id="displayHeight" class="patient-info"></td>
             </tr>
             <tr>
                 <td>Weight:</td>
-                <td id="displayLastName"></td>
+                <td id="displayWeight" class="patient-info"></td>
+            </tr>
+            <tr>
+                <td>Driver License Expiration:</td>
+                <td id="displayExpiration" class="patient-info"></td>
             </tr>
             <tr>
                 <td>Sex:</td>
-                <td id="displayLastName"></td>
+                <td id="displaySex" class="patient-info"></td>
             </tr>
         </table>
 
@@ -121,15 +121,25 @@
             var lastName = sessionStorage.getItem('lastName');
             var dob = sessionStorage.getItem('dob');
             var address = sessionStorage.getItem('address');
-            return { firstName, lastName, dob, address };
+            var licenseNumber = sessionStorage.getItem('licenseNumber');
+            var height = sessionStorage.getItem('height');
+            var weight = sessionStorage.getItem('weight');
+            var expiration = sessionStorage.getItem('expirationDate');
+            var sex = sessionStorage.getItem('sex');
+            return { firstName, lastName, dob, address, licenseNumber, height, weight, expiration, sex };
         }
 
         function displayStoredData() {
-            var { firstName, lastName, dob, address } = getStoredData();
+            var { firstName, lastName, dob, address, licenseNumber, height, weight, expiration, sex } = getStoredData();
             document.getElementById('displayFirstName').innerText = firstName;
             document.getElementById('displayLastName').innerText = lastName;
             document.getElementById('displayDob').innerText = dob;
             document.getElementById('displayAddress').innerText = address;
+            document.getElementById('displayLicenseNumber').innerText = licenseNumber;
+            document.getElementById('displayHeight').innerText = height;
+            document.getElementById('displayWeight').innerText = weight;
+            document.getElementById('displayExpiration').innerText = expiration;
+            document.getElementById('displaySex').innerText = sex;
         }
 
         function goBack() {
@@ -138,7 +148,7 @@
 
         function validate() {
             alert("Thank you, this information will now be sent to your medical assistant.");
-           window.location.href = 'index.html';
+            window.location.href = 'Test.html';
         }
 
         displayStoredData();
