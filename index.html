@@ -3,145 +3,48 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Drag and Drop File Upload</title>
-    <style>
-        body {
-            text-align: center;
-            margin-top: 50px;
-            background-color: #f4f4f5; /* Light gray background */
-            color: #000; /* Dark text color */
-        }
-
-        .main-content {
-            min-height: 100vh;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .input-container {
-            margin-bottom: 20px;
-        }
-
-        input[type="file"] {
-            display: none;
-        }
-
-        label {
-            padding: 10px 20px;
-            background-color: #0070f3;
-            color: #ffffff;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        label:hover {
-            background-color: #0056b3;
-        }
-
-        .file-names {
-            margin-top: 10px;
-            text-align: left;
-        }
-
-        .file-names p {
-            margin: 5px 0;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 300px; /* Adjust width as needed */
-        }
-
-        button {
-            background-color: #0070f3;
-            color: #ffffff;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            flex: 1; /* Distribute space evenly */
-            margin: 0 5px; /* Adjust margin as needed */
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header class="header">
         <h1 class="title">CPSI SCAN A DOC</h1>
     </header>
-
-    <main class="main-content">
-        <div class="container">
-            <div class="header-section">
-                <h1>Upload Files</h1>
-            </div>
-            <div class="drop-section" id="dropArea">
-                <div class="col">
-                    <div class="cloud-icon">
-                        <img src="cloud.png" alt="cloud">
-                    </div>
-                </div>
-                <h1>Driver's License Upload</h1>
-                <div class="button-container">
-                    <label for="myFile">Choose Files</label>
-                    <input type="file" id="myFile" multiple onchange="displayFileNames()" />
-                </div>
-                <div class="file-names" id="fileNames"></div>
-            </div>
-            <div class="button-container">
-                <button onclick="confirmUpload()">Upload</button>
-                <button onclick="goBack()">Back</button>
-            </div>
+    <div class="container">
+        <div class="header-section">
+            <h1>Upload Files</h1>
         </div>
-    </main>
+        <div class="drop-section" id="dropArea">
+            <div class="col">
+                <div class="cloud-icon">
+                    <img src="cloud.png" alt="cloud">
+                </div>
+            </div>
+            <h1>Driver's License Upload</h1>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href = 'Manual.html';">Manual Upload</button>
+            </div>
+            <h2>Scan Driver's License</h2>
+            <label for="myFile">Drag & Drop or Click to Choose File</label>
+            <input type="file" id="myFile" multiple /> <!-- Added multiple attribute here -->
+            <input type="button" value="Upload" onclick="confirmUpload()" /> <!-- Modified to call confirmUpload function -->
+        </div>
+    </div>
+    <div class="list-section">
+        <div class="list"></div>
+    </div>
 
     <script>
         function confirmUpload() {
             if (confirm("Are you sure you want to submit the information for extraction?")) {
-                // uploadFiles();
-                window.location.href = 'loading.html'; // Redirect to loading page
+                // uploadFile();
+                window.location.href = 'loadin.html'; // Redirect to Validation.html
             } else {
                 // User clicked Cancel, do nothing
             }
-        }
-
-        function displayFileNames() {
-            const input = document.getElementById('myFile');
-            const fileNamesDiv = document.getElementById('fileNames');
-            fileNamesDiv.innerHTML = ''; // Clear previous file names
-
-            for (let i = 0; i < input.files.length; i++) {
-                const fileName = input.files[i].name;
-                const paragraph = document.createElement('p');
-                paragraph.textContent = fileName;
-                fileNamesDiv.appendChild(paragraph);
-            }
-        }
-
-        function goBack() {
-            window.location.href = 'Test.html'; // Update the file name here
         }
     </script>
 </body>
