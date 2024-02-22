@@ -58,7 +58,6 @@
             border-top: 4px solid #0070f3;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            opacity: 0;
             transition: opacity 1s ease-in-out;
         }
 
@@ -112,7 +111,6 @@
         }
 
         setTimeout(function() {
-            document.getElementById('loading-circle').classList.add('hidden');
             document.getElementById('loading-text-1').classList.add('fade-out');
             setTimeout(function() {
                 document.getElementById('loading-text-1').classList.add('hidden');
@@ -123,6 +121,7 @@
                     setTimeout(function() {
                         document.getElementById('loading-text-2').classList.add('hidden');
                         document.getElementById('loading-button').classList.add('fade-in');
+                        document.getElementById('loading-circle').classList.add('hidden');
                     }, 1000);
                 }, 2000);
             }, 1000);
