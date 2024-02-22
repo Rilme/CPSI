@@ -1,6 +1,6 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0px;
+  margin: 100px;
   padding: 50px;
   background: linear-gradient(to bottom right, #FF00FF, #0050a0, #87CEEB, #0050a0, #FF00FF);
 }
@@ -94,17 +94,6 @@ a {
   max-width: 800px;
 }
 
-.card {
-  background-color: #ffffff;
-  text-align: center;
-  color: #333;
-  text-decoration: none;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  width: 100%;
-  box-sizing: border-box;
-}
 
 @media (min-width: 600px) {
   .card {
@@ -112,25 +101,7 @@ a {
   }
 }
 
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
-}
 
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-  color: #333;
-}
-
-.card p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #555;
-}
 
 button {
   background-color: #0070f3;
@@ -168,16 +139,16 @@ header-section {
   padding: 25px 0px;
 }
 
-.drop-section {
+/*.drop-section {
   min-height: 250px;
   border: 1px dashed #a8b3e3;
   background-image: linear-gradient(180deg, white, #f1f6ff);
   margin: 5px 35px 35px 35px;
   border-radius: 12px;
   position: relative;
-}
+}*/
 
-.drop-section div.col:first-child {
+drop-section div.col:first-child {
   opacity: 1;
   visibility: visible;
   transition-duration: 0.2s;
@@ -244,9 +215,9 @@ header-section {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
-.drop-section input {
+/*.drop-section input {
   display: none;
-}
+} */
 
 .list-section {
   display: none;
@@ -351,7 +322,7 @@ header-section {
 .list-section li.in-prog .file-size,
 .list-section li.in-prog svg.tick {
   display: none;
-}
+} 
 
 .container {
   text-align: center;
