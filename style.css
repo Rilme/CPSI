@@ -3,10 +3,10 @@ body {
    /* padding: 0; */
     /*margin-top: 50px;*/
       margin: 0px;
-      padding: 0px;
+      padding: 50px;
     background: linear-gradient(to bottom right, #FF00FF, #0050a0,#87CEEB,#0050a0,#FF00FF);
     text-align: center;
-    color: #333; /* Dark text color */
+    /* color: #333; /* Dark text color */
 }
 
 a {
