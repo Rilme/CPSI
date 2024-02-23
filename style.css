@@ -1,110 +1,167 @@
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: linear-gradient( #FF00FF, #0050a0, #87CEEB, #0050a0, #FF00FF); 
-  /*background: Hex #F8F8FF */
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-.header {
-  background-size: cover; /* Set background size to cover */
-  background-image: url("CPSI_bg.jpg");
-  padding: 2rem;
-  -webkit-text-stroke: 1px black;
-  text-align: center;
-  font-family: "Helvetica";
+body {
+  font-family: 'Exo', sans-serif;
+}
+
+::selection {
+  color: #fff;
+  background: #6990F2;
 }
 
 .title {
-  margin: 0;
-  line-height: 1.5;
-  font-size: 2rem;
+  padding-top: 25px;
+  font-size: 5rem;
+  max-height: 100px;
+  text-align: center;
   color: #ffffff;
 }
 
-.main-content {
-  min-height: 100vh;
-  padding: 2rem;
+.upload-dl {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 75vh;
+}
+
+.wrapper {
+  width: 430px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 30px;
+  box-shadow: 7px 7px 12px rgba(0, 0, 0, 0.05);
+}
+
+.wrapper header {
+  color: #6990F2;
+  font-size: 27px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.wrapper form {
+  height: 167px;
+  display: flex;
+  cursor: pointer;
+  margin: 30px 0;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
+  border-radius: 5px;
+  border: 2px dashed #6990F2;
+}
+
+form :where(i, p) {
+  color: #6990F2;
+}
+
+form i {
+  font-size: 50px;
+}
+
+form p {
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+section .row {
+  margin-bottom: 10px;
+  background: #E9F0FF;
+  list-style: none;
+  padding: 15px 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+section .row i {
+  color: #6990F2;
+  font-size: 30px;
+}
+
+section .details span {
+  font-size: 14px;
+}
+
+.progress-area .row .content {
+  width: 100%;
+  margin-left: 15px;
+}
+
+.progress-area .details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+  justify-content: space-between;
+}
+
+.progress-area .content .progress-bar {
+  height: 6px;
+  width: 100%;
+  margin-bottom: 4px;
+  background: #fff;
+  border-radius: 30px;
+}
+
+.content .progress-bar .progress {
+  height: 100%;
+  width: 0%;
+  background: #6990F2;
+  border-radius: inherit;
+}
+
+.uploaded-area {
+  max-height: 232px;
+  overflow-y: scroll;
+}
+
+.uploaded-area.onprogress {
+  max-height: 150px;
+}
+
+.uploaded-area::-webkit-scrollbar {
+  width: 0px;
+}
+
+.uploaded-area .row .content {
+  display: flex;
   align-items: center;
 }
 
-.description {
-  margin: 2rem 0;
-  line-height: 1.5;
-  font-size: 1rem;
-  color: #555;
-}
-
-.jimmy {
-  color: transparent;
-}
-
-.jimmy::-webkit-file-upload-button {
-  visibility: hidden;
-}
-
-.jimmy::before {
-  content: "Select a file";
-  color: #fff;
-  display: inline-block;
-  background: #0070f3;
-  border: none;
-  padding: 2px 3px;
-  border-radius: 3px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 12pt;
-}
-
-.jimmy:hover::before {
-  background-color: #0a2ac7;
-}
-
-.submit {
-  color: #fff;
-  display: inline-block;
-  border: none;
-  border-radius: 3px;
-  background: #0070f3;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 12pt;
-}
-
-.submit:hover {
-  background-color: #0a2ac7;
-}
-
-.grid {
+.uploaded-area .row .details {
   display: flex;
-  align-items: wrap;
-  justify-content: space-between;
-  /* flex-wrap: wrap; */
-  gap: 2rem;
-  max-width: 800px;
+  margin-left: 15px;
+  flex-direction: column;
 }
 
-
-@media (min-width: 600px) {
-  .card {
-    width: 48%;
-  }
+.uploaded-area .row .details .size {
+  color: #404040;
+  font-size: 11px;
 }
 
+.uploaded-area i.fa-check {
+  font-size: 16px;
+}
+
+.area {
+  background: linear-gradient(to bottom right, #0050a0, #87CEEB, #0050a0);
+  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+  width: 100%;
+  height: 100vh;
 
 
-button {
+}
+
+.button {
   background-color: #0070f3;
   color: #ffffff;
   padding: 2px 3px;
@@ -114,225 +171,4 @@ button {
   cursor: pointer;
   font-weight: 600;
   transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #0a2ac7;
-}
-
-header-section {
-  padding: 25px 0px;
-}
-
-.header-section h1 {
-  font-weight: 500;
-  font-size: 1.7rem;
-  text-transform: uppercase;
-  color: #707ea0;
-  margin: 0px;
-  margin-bottom: 8px;
-}
-
-.header-section p {
-  margin: 5px;
-  font-size: 0.95rem;
-  color: #707ea0;
-  padding: 25px 0px;
-}
-
-/*.drop-section {
-  min-height: 250px;
-  border: 1px dashed #a8b3e3;
-  background-image: linear-gradient(180deg, white, #f1f6ff);
-  margin: 5px 35px 35px 35px;
-  border-radius: 12px;
-  position: relative;
-}*/
-
-drop-section div.col:first-child {
-  opacity: 1;
-  visibility: visible;
-  transition-duration: 0.2s;
-  transform: scale(1);
-  width: 200px;
-  margin: auto;
-}
-
-.drop-section div.col:last-child {
-  font-size: 40px;
-  font-weight: 700;
-  color: #c0cae1;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  margin: auto;
-  width: 200px;
-  height: 55px;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0.6);
-  transition-duration: 0.2s;
-}
-
-/* we will use "drag-over-effect" class in js */
-.drag-over-effect div.col:first-child {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: scale(1.1);
-}
-
-.drag-over-effect div.col:last-child {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-}
-
-.drop-section .cloud-icon {
-  margin-top: 25px;
-  margin-bottom: 20px;
-}
-
-.drop-section span,
-.drop-section button {
-  display: block;
-  margin: auto;
-  color: #707ea0;
-  margin-bottom: 10px;
-}
-
-.drop-section button {
-  color: white;
-  background-color: #5874c6;
-  border: none;
-  outline: none;
-  padding: 7px 20px;
-  border-radius: 8px;
-  margin-top: 20px;
-  cursor: pointer;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-}
-
-/*.drop-section input {
-  display: none;
-} */
-
-.list-section {
-  display: none;
-  text-align: left;
-  margin: 0px 35px;
-  padding-bottom: 20px;
-}
-
-.list-section .list-title {
-  font-size: 0.95rem;
-  color: #707ea0;
-}
-
-.list-section li {
-  display: flex;
-  margin: 15px 0px;
-  padding-top: 4px;
-  padding-bottom: 2px;
-  border-radius: 8px;
-  transition-duration: 0.2s;
-}
-
-.list-section li:hover {
-  box-shadow: #e3eaf9 0px 0px 4px 0px, #e3eaf9 0px 12px 16px 0px;
-}
-
-.list-section li .col {
-  flex: 0.1;
-}
-
-.list-section li .col:nth-child(1) {
-  flex: 0.15;
-  text-align: center;
-}
-
-.list-section li .col:nth-child(2) {
-  flex: 0.75;
-  text-align: left;
-  font-size: 0.9rem;
-  color: #3e4046;
-  padding: 8px 10px;
-}
-
-.list-section li .col:nth-child(2) div.name {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 250px;
-  display: inline-block;
-}
-
-.list-section li .col .file-name span {
-  color: #707ea0;
-  float: right;
-}
-
-.list-section li .file-progress {
-  width: 100%;
-  height: 5px;
-  margin-top: 8px;
-  border-radius: 8px;
-  background-color: #dee6fd;
-}
-
-.list-section li .file-progress span {
-  display: block;
-  width: 0%;
-  height: 100%;
-  border-radius: 8px;
-  background-image: linear-gradient(120deg, #6b99fd, #9385ff);
-  transition-duration: 0.4s;
-}
-
-.list-section li .col .file-size {
-  font-size: 0.75rem;
-  margin-top: 3px;
-  color: #707ea0;
-}
-
-.list-section li .col svg.cross,
-.list-section li .col svg.tick {
-  fill: #8694d2;
-  background-color: #dee6fd;
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-}
-
-.list-section li .col svg.tick {
-  fill: #50a156;
-  background-color: transparent;
-}
-
-.list-section li.complete span,
-.list-section li.complete .file-progress,
-.list-section li.complete svg.cross {
-  display: none;
-}
-
-.list-section li.in-prog .file-size,
-.list-section li.in-prog svg.tick {
-  display: none;
-} 
-
-.container {
-  text-align: center;
-  width: 100%;
-  max-width: 500px;
-  min-height: 435px;
-  margin: auto;
-  margin-top: 50px;
-  background-color: white;
-  border-radius: 16px;
-  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
